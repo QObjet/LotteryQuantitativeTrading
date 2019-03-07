@@ -2,17 +2,12 @@ class SumSingleDouble:
     def __init__(self):
         # 开奖数据
         self.data=[]
-        # 该期投注双结果
-        self.__sum_double=0
-        # 投注双走势
-        self.sum_list_double=[]
-        # 该期投注单结果
-        self.__sum_single=0
-        # 投注单走势
-        self.sum_list_single=[]
-        
-        self.__direction_double=0
-        self.__direction_single=0
+        self.post_list=[]
+        self.sum_list=[]
+        self.__direction=0
+        self.__index=0
+        self.__post_sum=0
+        self.__sum=0
         
     def append(self,data):
         '''
@@ -20,21 +15,24 @@ class SumSingleDouble:
         '''
         self.data.append(data)
         
-        # 求单双差值（双）
-        if data%2==0:
-            self.__direction_double=1
-        else:
-            self.__direction_double=-1
-        self.__sum_double+=self.__direction_double
-        self.sum_list_double.append(self.__sum_double)
-        
-        # 求单双差值（单）
-        if data%2==1:
-            self.__direction_single=1
-        else:
-            self.__direction_single=-1
-        self.__sum_single+=self.__direction_single
-        self.sum_list_single.append(self.__sum_single)
+        if self.__index!=0:
+            curr= 1 if data%2==1 else -1
+            last= 1 if self.data[self.__index-1]%2==1 else -1
+            mod_sum=curr+last
+            if mod_sum!=0:
+                self.__post_sum+=mod_sum/2
+
+            if data%2==0:
+                self.__direction_double=1
+            else:
+                self.__direction_double=-1
+
+            self.__sum+=self.__direction_double*self.post_list[self.__index-1]
+
+
+        self.post_list.append(self.__post_sum)
+        self.sum_list.append(self.__sum)
+        self.__index+=1
         
     def appends(self,datas):
         '''

@@ -10,34 +10,42 @@ if __name__=='__main__':
     sys.path.append(rootPath)
 
 from PythonPost.Common.simple_single_double import *
+from PythonPost.Common.sum_single_double import *
 import PythonPost.Common.spawn_data as sd
 import PythonPost.TrackTheTrends.polyomial_manager as pm
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
-datas=sd.create_data(100)
-ssd=SimpleSingleDouble()
-ssd.appends(datas)
-x=np.arange(0,100,1)
-y=ssd.sum_list_double
+# datas=sd.create_data(100)
+data_frame=pd.read_csv('top_speed28.csv')
+datas=list(data_frame['number'])
+# ssd=SimpleSingleDouble()
+ssd=SumSingleDouble()
+ssd.appends(datas[:200])
+x=np.arange(0,200,1)
+# y=ssd.sum_list_double
+y=ssd.sum_list
 
 plt.scatter(x,y)
 fn=pm.keep_r_squared(x,y)
 plt.plot(x,fn(x))
 plt.show()
 
-index=5
+index=1
 
 while True:
     plt.cla()
 
-    data=sd.create_data(5)
+    # data=sd.create_data()
+    data=datas[200+index-1:200+index]
     ssd.appends(data)
-    x=np.arange(0,100+index,1)
-    y=ssd.sum_list_double
+    x=np.arange(0,200+index,1)
+    # y=ssd.sum_list_double
+    y=ssd.sum_list
 
     plt.scatter(x,y)
     fn=pm.keep_r_squared(x,y)
     plt.plot(x,fn(x))
     plt.show()
-    index+=5
+    index+=1
