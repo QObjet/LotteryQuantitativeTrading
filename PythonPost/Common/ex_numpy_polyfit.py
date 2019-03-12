@@ -1,5 +1,10 @@
 import numpy as np
 
+'''
+numpy.polyfit()函数可以拟合高次多项式
+但次数最高为18，次数越高得到的结果误差越大
+'''
+
 # Polynomial Regression
 def ex_polyfit(x, y, degree):
     '''
@@ -8,13 +13,11 @@ def ex_polyfit(x, y, degree):
     多项式参数:results['polynomial']
     r-squared:results['determination']
     '''
+
     results = {}
-
     coeffs = np.polyfit(x, y, degree)
-
     # Polynomial Coefficients
     results['polynomial'] = coeffs.tolist()
-
     # r-squared
     p = np.poly1d(coeffs)
     # fit values, and mean

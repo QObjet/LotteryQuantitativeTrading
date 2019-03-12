@@ -1,4 +1,11 @@
 class SimpleSingleDouble:
+    '''
+    简单计算投注单和投注双的走势
+    变量：
+    self.sum_list_double 投注双走势
+    self.sum_list_single 投注但走势
+    '''
+
     def __init__(self):
         # 开奖数据
         self.data=[]
@@ -18,6 +25,7 @@ class SimpleSingleDouble:
         '''
         添加并计算一个数据
         '''
+
         self.data.append(data)
         
         # 求单双差值（双）
@@ -40,5 +48,6 @@ class SimpleSingleDouble:
         '''
         添加并计算一组数据
         '''
+
         for data in datas:
             self.append(data)

@@ -1,4 +1,13 @@
-class SumSingleDouble:
+class SumProgressive:
+    '''
+    连续开两次单，投注+1
+    连续开两次双，投注-1
+    统计走势
+    变量：
+    self.post_list 投注列表
+    self.sum_list 走势
+    '''
+
     def __init__(self):
         # 开奖数据
         self.data=[]
@@ -13,6 +22,7 @@ class SumSingleDouble:
         '''
         添加并计算一个数据
         '''
+
         self.data.append(data)
         
         if self.__index!=0:
@@ -38,5 +48,6 @@ class SumSingleDouble:
         '''
         添加并计算一组数据
         '''
+
         for data in datas:
             self.append(data)

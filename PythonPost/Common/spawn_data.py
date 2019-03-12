@@ -11,6 +11,7 @@ def create_origin_data(row=1):
     原始数据
     row 数据行数
     '''
+
     return np.random.randint(low=0,high=10,size=(row,3))
 
 def create_data(row=1):
@@ -18,6 +19,7 @@ def create_data(row=1):
     开奖数据
     row 数据行数
     '''
+    
     origin_data_list=create_origin_data(row)
     data_list=[]
     
